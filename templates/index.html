@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Principal</title>
+  </head>
+  <body>
+        <div style="background-color:pink; text-align:center">
+            <p>Minha primeira página web</p>
+
+        </div>
+        <div style="background-color:red">
+            <p>olá, eu sou o {{valor}}</p>
+
+        </div>
+
+        <div>
+            <form method="post" action="/receberNome">
+                <label>Nome</label>
+                <input type="text" id="nomeUsuario" name="nomeusuario">
+                <br>
+                <label>Cargo</label>
+                <input type="text" id="cargoUsuario" name="cargousuario">
+                <br>
+                <label>Senha</label>
+                <input type="password" id="senhaUsuario" name="senhausuario">
+                <br>
+
+                <button>Enviar</button>
+            </form>
+            <a style="color:red">{{mensagem}}</a>
+
+        </div>
+
+
+  </body>
+</html>

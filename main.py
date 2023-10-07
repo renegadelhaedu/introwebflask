@@ -1,16 +1,46 @@
-# This is a sample Python script.
+import datetime
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from flask import *
+from datetime import *
+
+app = Flask(__name__)
+
+nome_dev = 'Rene'
+
+@app.route("/") #decorator
+def index():
+    return render_template('index.html', valor=nome_dev)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@app.route("/receberNome", methods=["POST"])
+def recebi_nome_usuario():
+    nome = str(request.form.get('nomeusuario'))
+    cargo = str(request.form.get('cargousuario'))
+    senha = str(request.form.get('senhausuario'))
+
+    print(nome+" - "+cargo)
+
+    if(nome == senha):
+        msg = 'A senha deve ser diferente do seu nome'
+        return render_template('index.html', valor=nome_dev, mensagem=msg)
+    else:
+        return f'deu certo {nome}'
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+@app.route("/hora")
+def minha_pagina():
+    data = datetime.now()
+    ano = data.year
+    mes = data.month
+    dia = data.day
+    hora = data.hour
+    minutos = data.minute
+    segundos = data.second
+
+    return f'Hoje, a data é {dia}-{mes}-{ano} e a hora é {hora}:{minutos}:{segundos}'
+
+if(__name__ == '__main__' ):
+    app.run(debug=True)
