@@ -1,9 +1,15 @@
+'''
+https://github.com/renegadelhaedu/introwebflask.git
+'''
+
 import datetime
 
 from flask import *
 from datetime import *
 
 app = Flask(__name__)
+
+usuarios = ['adm']
 
 nome_dev = 'Rene'
 
@@ -18,15 +24,19 @@ def recebi_nome_usuario():
     cargo = str(request.form.get('cargousuario'))
     senha = str(request.form.get('senhausuario'))
 
-    print(nome+" - "+cargo)
+    usuarios.append(nome)
+
+    listao = ''
+    for user in usuarios:
+        listao = listao + '\n' + user
+
+    print(listao)
 
     if(nome == senha):
         msg = 'A senha deve ser diferente do seu nome'
         return render_template('index.html', valor=nome_dev, mensagem=msg)
     else:
-        return f'deu certo {nome}'
-
-
+        return render_template('sucessocadastro.html',lista=listao)
 
 
 
